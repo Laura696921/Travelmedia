@@ -125,6 +125,8 @@ STATICFILES_DIRS = (
     BASE_DIR / 'static',
 )
 
+STATIC_ROOT = '/var/www/Travelmedia/assets/'
+
 MEDIA_ROOT = BASE_DIR / "media"
 
 MEDIA_URL = "/media/"
