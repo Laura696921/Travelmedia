@@ -13,7 +13,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'travelmedia.bg',
+    '13.49.57.160',
 
 ]
 
