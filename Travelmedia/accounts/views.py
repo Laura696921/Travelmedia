@@ -75,6 +75,10 @@ class LoginView(auth_views.LoginView):
     template_name = 'accounts/login.html'
     redirect_authenticated_user = True
 
+    def form_invalid(self, form):
+        messages.error(self.request, "Invalid email or password. Please try again.")
+        return super().form_invalid(form)
+
 class RegisterView(views.CreateView):
     form_class = AccountUserCreationForm
     template_name = 'accounts/register.html'
