@@ -141,5 +141,5 @@ AUTH_USER_MODEL = "accounts.AccountUser"
 
 
 LOGIN_REDIRECT_URL = reverse_lazy("index")
-LOGIN_URL = reverse_lazy("signin user")
+LOGIN_URL = reverse_lazy("login user")
 LOGOUT_REDIRECT_URL = reverse_lazy("index")
