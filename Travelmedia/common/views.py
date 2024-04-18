@@ -126,16 +126,19 @@ def load_more_comments(request):
 
     # Handle invalid requests
     return JsonResponse({'error': 'Invalid request'}, status=400)
+    
 @login_required
 def add_like_to_photo(request, pk):
     photo = get_object_or_404(HotelPhoto, pk=pk)
-    like, created = HotelLike.objects.get_or_create(
-        hotel_photo=photo,
-        user=request.user
-    )
-    if not created:
-        # User already liked the photo
-        pass  # You can handle this case as needed
+
+    if request.user.is_authenticated:
+        like, created = HotelLike.objects.get_or_create(
+            hotel_photo=photo,
+            user=request.user
+        )
+
+    else:
+        return redirect('login user')
     return redirect('hotel description', pk=photo.hotel.id)
 
 @login_required
