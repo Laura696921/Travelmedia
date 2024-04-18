@@ -8,7 +8,6 @@ from Travelmedia.common.models import HotelLike, HotelComment
 from Travelmedia.hotels.models import HotelPhoto, Hotel
 
 
-
 def about_us(request):
     context = {
         'title': 'About Us',
@@ -36,7 +35,6 @@ def search_hotels_in_western_europe(request):
 def search_hotels_in_balkans(request):
     hotels = Hotel.objects.filter(location='Balkans')
 
-    # If a search query is provided, filter hotels by name
     search_query = request.GET.get('search')
     if search_query:
         hotels = hotels.filter(name__icontains=search_query)
@@ -47,7 +45,6 @@ def search_hotels_in_balkans(request):
 def search_hotels_in_europe(request):
     hotels = Hotel.objects.filter(location='Europe')
 
-    # If a search query is provided, filter hotels by name
     search_query = request.GET.get('search')
     if search_query:
         hotels = hotels.filter(name__icontains=search_query)
@@ -70,7 +67,7 @@ class BalkansHotelListView(ListView):
 
 
 class EasternEuropeHotelListView(ListView):
-    template_name = 'eastern_europe_hotels.html'  # Create a template for displaying Western Europe hotels
+    template_name = 'eastern_europe_hotels.html' 
     context_object_name = 'eastern_europe_hotels'
 
     def get_queryset(self):
@@ -79,7 +76,7 @@ class EasternEuropeHotelListView(ListView):
 
 class EuropeHotelListView(ListView):
     model = Hotel
-    template_name = 'europe_hotels.html'  # Template for displaying Europe hotels
+    template_name = 'europe_hotels.html'  
     context_object_name = 'europe_hotels'
 
     def get_queryset(self):
@@ -110,23 +107,20 @@ def load_more_comments(request):
         photo_id = request.GET.get('photo_id')
         offset = int(request.GET.get('offset', 0))
 
-        # Retrieve the photo object
         photo = HotelPhoto.objects.get(pk=photo_id)
 
-        # Query additional comments starting from the provided offset
         comments = photo.comments.all()[offset:offset+3]
 
-        # Construct HTML markup for the additional comments
         html_comments = ""
         for comment in comments:
             html_comments += f"<div class='mb-3'><p class='card-text'>{comment.text}</p><p class='card-text'><small class='text-muted'>By: {comment.user.username}</small></p></div>"
 
-        # Return JSON response with HTML markup of additional comments
         return JsonResponse({'html_comments': html_comments})
 
     # Handle invalid requests
     return JsonResponse({'error': 'Invalid request'}, status=400)
-    
+
+
 @login_required
 def add_like_to_photo(request, pk):
     photo = get_object_or_404(HotelPhoto, pk=pk)
@@ -151,6 +145,5 @@ def remove_like_from_photo(request, pk):
         )
         like.delete()
     except HotelLike.DoesNotExist:
-        # User didn't like the photo
-        pass  # You can handle this case as needed
+        pass
     return redirect('hotel description', pk=photo.hotel.id)
