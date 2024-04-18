@@ -1,0 +1,36 @@
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    text-align: right;
+    padding-right: 15px;
+    padding-bottom: 40px;
+    transition: 0.5s;
+    transition-property: box-shadow;
+
+}
+
+.edit-button, .delete-button, .details-button {
+    height: 15%;
+    padding: 8px;
+    margin-top: auto;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 25px white;
+    border-radius: 20px;
+}
+.edit-button{
+    background: #3387C7;
+}
+
+.details-button {
+    background: #3387C7;
+}
+.delete-button{
+    background: red;
+}
+
+.edit-button:hover, .delete-button:hover {
+    box-shadow: 0 0 100px white;
+}

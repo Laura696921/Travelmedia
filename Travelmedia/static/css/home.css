@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand&family=Roboto&display=swap');
+
+.custom-bg-light-blue {
+    background-color: #ADD8E6; /* Light blue color */
+}
+
+body {
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    min-height: 100vh;
+    padding-top: 56px;
+
+
+}
+
+.card-body-fixed-height {
+    height: 200px;
+    overflow: hidden;
+}
+
+.container {
+    padding: 15px 0;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container a {
+    color: #403e3e;
+}
+
+.container .logo {
+    display: flex;
+    cursor: pointer;
+}
+
+
+

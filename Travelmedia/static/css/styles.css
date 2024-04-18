@@ -1,0 +1,7 @@
+@import './home.css';
+@import './login.css';
+@import './hotel_details.css';
+
+.cards-wrapper {
+    column-gap: 15px;
+}
