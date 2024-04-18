@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="container-fluid p-0">
+    <div class="position-relative">
+        <img src="{% static 'images/about.jpg' %}" class="img-fluid w-100" alt="Big Photo">
+         <h1 class="display-4 font-weight-bold text-center">{{ title }}</h1>
+            <p class="lead text-center display-3">Welcome to TravelMedia</p>
+        <div class="dark-overlay"></div>
+        <div class="mt-5 pt-5 mx-md-5 px-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-dark text-white h-100">
+                                <div class="card-body">
+                                    <h2 class="card-title font-weight-bold">Our Mission</h2>
+                                    <p class="card-text lead">Our mission at TravelMedia is to inspire and empower travelers to explore the world with curiosity, respect, and a sense of adventure...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-dark text-white h-100">
+                                <div class="card-body">
+                                    <h2 class="card-title font-weight-bold">Our Story</h2>
+                                    <p class="card-text lead">TravelMedia was founded by a team of avid travelers who shared a common vision: to make travel more accessible, enjoyable, and enriching for people around the globe...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-dark text-white h-100">
+                                <div class="card-body">
+                                    <h2 class="card-title font-weight-bold">Meet the Team</h2>
+                                    <p class="card-text lead">Behind TravelMedia is a dedicated team of travel enthusiasts, digital nomads, and industry experts who are committed to delivering exceptional travel experiences...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12"> <!-- Added col-md-12 here -->
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-dark text-white">
+                                <div class="card-body">
+                                    <h2 class="card-title font-weight-bold">What We Offer</h2>
+                                    <ul class="card-text lead">
+                                        <li>Comprehensive Travel Guides: Discover insider tips, hidden gems, and local recommendations for destinations around the world...</li>
+                                        <li>Travel Inspiration: Get inspired with stunning travel photography, captivating stories, and informative articles on our blog...</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-dark text-white">
+                                <div class="card-body">
+                                    <h2 class="card-title font-weight-bold">Join Our Community</h2>
+                                    <p class="card-text lead">Become part of the TravelMedia community and connect with fellow travelers from all walks of life...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-dark text-white">
+                                <div class="card-body">
+                                    <h2 class="card-title font-weight-bold">Get in Touch</h2>
+                                    <p class="card-text lead">Have questions or feedback? We'd love to hear from you! Don't hesitate to reach out to us via email, phone, or social media...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block main_content %}
+
+  <div class="container bg-white shadow-md p-5 mt-5 pt-5" style="width: 500px;">
+     <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete the hotel "{{ object.name }}"?</p>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a class="btn btn-primary" href="{% url 'hotel description' pk=object.pk %}">Go back</a>
+    </form>
+</div>
+{% endblock %}

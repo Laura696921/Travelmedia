@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+    <div class="container">
+        <div class="col-9">
+            <a href="{% url 'edit photo' pk=object.pk %}">Edit</a>
+
+
+            <p class="pet-details">{{ object.description }}</p>
+
+            <h5 class="postTime">{{ object.created_at }}</h5>
+
+            <div class="comments">
+                {% for comment in object.photocomment_set.all %}
+                    <div class="top">
+                        <div class="userDetails">
+                            <div class="comment-data">
+                                <div class="profilepic">
+                                    <div class="profile_img">
+                                        <div class="image">
+                                            <img src="{% static 'images/person.png' %}" alt="img8">
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>
+                                    <a href="{% url 'details profile' pk=1 %}">Lora</a>
+                                    <!-- User Comment -->
+                                    - {{ comment.text }}
+                                </p>
+                            </div>
+                            <span>{{ comment.created_at }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- End Comments Section -->
+        </div>
+
+    </div>
+{% endblock %}

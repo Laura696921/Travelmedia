@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Photo to Hotel</title>
+</head>
+<body>
+    <h2>Add Photo to {{ hotel.name }}</h2>
+
+    <form method="post" action="{% url 'add photo' pk=hotel.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload Photo</button>
+    </form>
+</body>
+</html>

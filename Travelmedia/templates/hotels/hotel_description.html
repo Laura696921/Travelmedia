@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="container mt-5 mb-5">
+    <div class="card">
+        <img src="{{ hotel.picture }}" class="card-img-top" alt="Hotel Photo">
+        <div class="card-body">
+            <h2 class="card-title">{{ hotel.name }}</h2>
+            <p class="card-text">{{ hotel.description }}</p>
+            {% if request.user == hotel.owner %}
+            <div class="mt-3">
+                <a href="{% url 'edit hotel' pk=hotel.pk %}" class="btn btn-info mr-2">Edit</a>
+                <a href="{% url 'delete hotel' pk=hotel.pk %}" class="btn btn-info">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="mt-5 mx-5 mb-5">
+    <div class="text-center mb-5">
+        <h3>Hotel Photos:</h3>
+    </div>
+
+    <div class="row">
+        {% if page_obj %}
+            {% for photo in page_obj %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ photo.photo.url }}" class="card-img-top" alt="Hotel Photo">
+                        <div class="card-body">
+                            <!-- Comments section -->
+                            <h5 class="card-title">Comments:</h5>
+                            <div id="comments-container-{{ photo.id }}">
+                                {% for comment in photo.comments.all|slice:":3" %}
+                                    <div class="comment">
+                                        <p>{{ comment.text }}</p>
+                                        <!-- Delete button for each comment (only for superuser) -->
+                                        {% if request.user.is_superuser %}
+                                            <form class="delete-comment-form" action="{% url 'delete comment' comment.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                                {% if photo.comments.count > 3 %}
+                                    <button id="show-more-comments-{{ photo.id }}" class="btn btn-primary">Show more</button>
+                                {% endif %}
+                                <div id="additional-comments-{{ photo.id }}" style="display: none;">
+                                    {% for comment in photo.comments.all|slice:"3:" %}
+                                        <div class="comment">
+                                            <p>{{ comment.text }}</p>
+                                            <!-- Delete button for each additional comment (only for superuser) -->
+                                            {% if request.user.is_superuser %}
+                                                <form class="delete-comment-form" action="{% url 'delete comment' comment.id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete Comment</button>
+                                                </form>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!-- Add comment form (only for authenticated users) -->
+                            {% if request.user.is_authenticated %}
+                                <div class="mt-4">
+                                    <h5>Add Comment:</h5>
+                                    <form class="add-comment-form" action="{% url 'add_comment_to_photo' pk=photo.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="photo_id" value="{{ photo.id }}">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="comment_text" rows="3" placeholder="Add a comment..."></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Add Comment</button>
+                                    </form>
+                                </div>
+                                 {% if request.user.is_authenticated and hotel.owner == request.user %}
+                                    <form class="delete-photo-form" action="{% url 'delete photo' pk=photo.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Delete photo</button>
+                                    </form>
+                                 {% endif %}
+                            </div>
+                            {% endif %}
+
+                            <!-- Like and dislike buttons -->
+                            <div class="mt-2 mb-3 pl-2 pr-2">
+                                <form action="{% url 'add_like_to_photo' pk=photo.pk %}" method="post" style="display: inline-block;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-thumbs-up"></i> <!-- Thumbs up icon -->
+                                    </button>
+                                </form>
+
+                                <form action="{% url 'remove_like_from_photo' pk=photo.pk %}" method="post" style="display: inline-block;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-thumbs-down"></i> <!-- Thumbs down icon -->
+                                    </button>
+                                </form>
+                                <!-- Show number of likes -->
+                               <div class="like-count" style="display: inline-block;" >
+                                    <p class="card-text">
+                                        <i class="fas fa-heart"></i> <!-- Heart icon -->
+                                        {{ photo.likes.count }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No photos available.</p>
+        {% endif %}
+
+
+    {% if request.user.is_authenticated and hotel.owner == request.user %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Add Photo:</h5>
+                <form method="post" action="{% url 'add photo' pk=hotel.pk %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="photo">Choose a photo:</label>
+                        <input type="file" class="form-control-file" id="photo" name="photo">
+                    </div>
+                    <button id="upload-photo-btn" type="submit" class="btn btn-primary">Upload Photo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

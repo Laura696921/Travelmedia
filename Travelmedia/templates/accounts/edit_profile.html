@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="container mt-5 mb-5 pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Left side: Photo -->
+            <img src="{% static 'images/edit-photo.jpg' %}" class="img-fluid" alt="Photo">
+        </div>
+        <div class="col-md-6">
+            <!-- Right side: Edit Profile Form -->
+            <div class="col-md-8">
+                <h1 class="mb-4">Edit Profile</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_first_name" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="id_first_name" name="first_name" value="{{ form.first_name.value }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_last_name" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="id_last_name" name="last_name" value="{{ form.last_name.value }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_date_of_birth" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="id_date_of_birth" name="date_of_birth" value="{{ form.date_of_birth.value }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_profile_picture" class="form-label">Profile Picture URL</label>
+                        <input type="url" class="form-control" id="id_profile_picture" name="profile_picture" value="{{ form.profile_picture.value }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

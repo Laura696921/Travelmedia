@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<img src="{% static 'images/main.jpg' %}" class="img-fluid w-100" alt="Big Photo">
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <img src="{% static 'images/europe.jpg' %}" class="card-img-top" alt="Europe Photo">
+                <div class="card-body card-body-fixed-height d-flex flex-column">
+                    <h5 class="card-title">Europe</h5>
+                    <p class="card-text">Explore hotels in Europe</p>
+                    <a href="{% url 'europe_hotels' %}" class="btn btn-primary mt-auto">View Europe Hotels</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <img src="{% static 'images/images.jpg' %}" class="card-img-top" alt="Western Europe Photo">
+                <div class="card-body card-body-fixed-height d-flex flex-column">
+                    <h5 class="card-title">Western Europe</h5>
+                    <p class="card-text">Discover hotels in Western Europe</p>
+                    <a href="{% url 'western_europe_hotels' %}" class="btn btn-primary mt-auto">View Western Europe Hotels</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <img src="{% static 'images/ee_city_breaks_prg_bud_buch_1520x543px.jpg' %}" class="card-img-top" alt="Eastern Europe Photo">
+                <div class="card-body card-body-fixed-height d-flex flex-column">
+                    <h5 class="card-title">Eastern Europe</h5>
+                    <p class="card-text">Browse hotels in Eastern Europe</p>
+                    <a href="{% url 'eastern_europe_hotels' %}" class="btn btn-primary mt-auto">View Eastern Europe Hotels</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <img src="{% static 'images/Balkan-Countries.jpg' %}" class="card-img-top" alt="Balkans Photo">
+                <div class="card-body card-body-fixed-height d-flex flex-column">
+                    <h5 class="card-title">Balkans</h5>
+                    <p class="card-text">Check out hotels in the Balkans</p>
+                    <a href="{% url 'balkans_hotels' %}" class="btn btn-primary mt-auto">View Balkans Hotels</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

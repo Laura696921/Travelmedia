@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block main_content %}
+    
+    <h1>This is main page</h1>
+
+    Register
+    {{ form }}
+    {% csrf_token %}
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block main_content %}
+<div class="bg-light">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Left side: Photo -->
+                <img src="{% static 'images/add-hotel.jpg' %}" class="img-fluid" alt="Your Photo">
+            </div>
+            <div class="col-md-6">
+                <!-- Right side: Add Hotel Form -->
+                <div class="custom-bg-light-blue shadow-md p-5" style="width: 500px;">
+                    <form method="post" action="{% url 'add hotel'  %}">
+                        {{ form.name|as_crispy_field }}
+                        {{ form.location|as_crispy_field }}
+                        {{ form.visit_status|as_crispy_field }}
+                        {{ form.picture|as_crispy_field }}
+                        {{ form.description|as_crispy_field }}
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

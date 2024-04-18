@@ -1,0 +1,40 @@
+{% load static %}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #F5F5DC;"> <!-- Set background color to beige -->
+        <div class="container">
+            <a class="navbar-brand text-pink" href="{% url 'index' %}">Travelmedia</a> <!-- Set navbar brand text color to pink -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-pink" href="{% url 'details profile' pk=request.user.pk %}">Profile</a> <!-- Set navbar link text color to pink -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-pink" href="{% url 'add hotel'  %}">Add Hotel</a> <!-- Set navbar link text color to pink -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-pink" href="{% url 'about_us' %}">About Us</a> <!-- Set navbar link text color to pink -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-pink" href="{% url 'logout user' %}">Log out</a> <!-- Set navbar link text color to pink -->
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-pink" href="{% url 'login user' %}">Login</a> <!-- Set navbar link text color to pink -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-pink" href="{% url 'register_user' %}">Register</a> <!-- Set navbar link text color to pink -->
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-pink" href="{% url 'about_us' %}">About Us</a> <!-- Set navbar link text color to pink -->
+                    </li>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+<body>
+    <section id="packages" class="pt-md-5">
+    <h2 class="text-center my-5">Hotels</h2>
+
+   <div class="container cards-wrapper d-flex gx-5">
+       {% if hotels %}
+           {% for hotel in hotels %}
+            <div class="card">
+                <img src="{{ hotel.picture }}" class="card-img-top" alt="hotel-photo"/>
+                <div class="card-body">
+                    <h5 class="card-title"> {{ hotel.name }} </h5>
+                    <p class="card-text"> {{ hotel.description }}</p>
+                    <div class="buttons">
+                         <a  href="{% url 'hotel description' pk=hotel.pk %}" class="details-button"> Details </a>
+                        <a  href="{% url 'edit hotel' pk=hotel.pk %}" class="edit-button"> Edit </a>
+                         <a  href="{% url 'delete hotel' pk=hotel.pk %}" class="delete-button"> Delete </a>
+                    </div>
+
+
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+            <p>No hotels</p>
+
+        {% endif %}
+   </div>
+    {% csrf_token %}
+    </section>
+{% endblock %}

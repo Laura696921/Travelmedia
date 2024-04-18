@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Left side: Profile Picture -->
+            <div class="card mb-4" style="background-color: #F5F5DC;">
+                <div class="card-body">
+                    <h5 class="card-title">Profile Picture</h5>
+                    <img src="{{ object.profile_picture }}" class="img-fluid" alt="Profile Picture">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Right side: User Information -->
+            <div class="card mb-4" style="background-color: #F5F5DC;">
+                <div class="card-body">
+                    <h5 class="card-title">Name</h5>
+                    <p class="card-text">First Name: {{ object.first_name }}</p>
+                    <p class="card-text">Last Name: {{ object.last_name }}</p>
+                </div>
+            </div>
+            <div class="card mb-4" style="background-color: #F5F5DC;">
+                <div class="card-body">
+                    <h5 class="card-title">User Information</h5>
+                    <p class="card-text">Username: {{ object.user.email }}</p>
+                    <p class="card-text">Age: {{ object.calculate_age }}</p>
+                </div>
+            </div>
+            <div class="text-center mb-4">
+                <a href="{% url 'index' %}" class="btn btn-secondary">Back to Index</a>
+                <a href="{% url 'edit profile' object.pk %}" class="btn btn-primary">Edit Profile</a>
+            </div>
+            {% csrf_token %}
+        </div>
+    </div>
+</div>
+{% endblock %}
