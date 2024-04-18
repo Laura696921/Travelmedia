@@ -2,15 +2,11 @@ from django.urls import path, include
 
 from Travelmedia.common.views import add_comment_to_photo, add_like_to_photo, remove_like_from_photo, delete_comment
 from Travelmedia.hotels.views import AddHotelView, \
-    HotelDescription, HotelEditView, HotelDeleteView, add_photo, my_view, verify_permission_assignment, \
+    HotelDescription, HotelEditView, HotelDeleteView, add_photo, \
     delete_photo
 
 urlpatterns = (
     path('add-hotel/', AddHotelView.as_view(), name='add hotel'),
-    path('e/', my_view, name='view'),
-    path('verify-permission/', verify_permission_assignment, name='verify_permission_assignment'),
-
-
     path('hotel/<int:pk>/', include([
             path('', HotelDescription.as_view(), name='hotel description'),
             path('add_photo/', add_photo, name='add photo'),
